@@ -1,0 +1,102 @@
+#+title: Definitions in Emacs (a LISP dialect)
+#+author: Ayo Onipe
+
+LISP definitions because you type an *expression*, and the
+interpreter responds by displaying the result of its
+*evaluating* that expression.
+
+Or because, you type the number '480' which is precisely
+an expression that you type consisting of the numerals
+that represent the number in base 10.
+
+The language of LISP is so precise. Hence, definitions...
+
+
+* Combinations
+Expression formed by delimiting a list of expressions
+with parentheses in order to denote procedure application.
+e.g
+#+begin_src emacs-lisp
+(+ 183 43) (+ 390 49 30)
+#+end_src
+
+* Special forms
+Exceptions to the general evaluation rule.
+Each special form has its own evaluation rule.
+e.g
+(define x 3) does not apply *define* to two arguments
+(x and 3), since the purpose of the define is precisely
+to associate x with a value.
+Hence, (define x 3) is not a combination.
+
+* Compound procedure: by procedure definition
+A powerful abstraction technique by which a compound
+operation can be given a name and then referred to as
+a unit.
+General form:
+#+begin_src emacs-lisp
+(define (<name> <formal parameters>) <body>)
+#+end_src
+
+<name>: symbol to be associated with the procedure
+definition.
+
+<formal parameters>: names used within the body of the
+procedure to refer to the corresponding arguments of the
+procedure.
+
+<body>: an expression that will yield the value of the
+procedure application when the formal parameters are
+replaced by the actual arguments to which the procedure
+is applied.
+
+#+begin_src emacs-lisp
+e.g squaring: (define (square x) (* x x))
+
+(define (square x)        (*        x     x))
+|        |      |          |        |     |
+To       square something, multiply it by itself.
+#+end_src
+
+* Conditionals
+#+begin_src emacs-lisp
+  (cond (<p1> <e1>)
+        (<p2> <e2>)
+        ...
+        (<pn> <en>))
+#+end_src
+
+Conditional expressions are evaluated as follows. The
+predicate ~<p1>~ is evaluated first. If its value is false,
+then ~<p2>~ is evaluated. If ~<p2>~'s value is also false,
+then ~<p3>~ is evaluated. This process continues until a
+predicate is found whose value is true, in which case
+the interpreter returns the value of the corresponding
+/consequent expression/ ~<e>~ of the clause as the value
+of the conditional expression. If none of the ~<p>~'s is
+found to be true, the value of the =cond= is undefined
+
+** Clauses
+Parenthesized pairs of expressions.
+
+#+begin_src emacs-lisp
+  (<p2> <e2>)
+#+end_src
+
+** Predicate
+#+begin_src emacs-lisp
+  <pn>
+#+end_src
+
+An expression whose value is interpreted as either t or f.
+The word /predicate/ is used for procedures that return
+true of false, as well as for expressions that evaluate
+to true of false.
+
+** Consequent Expression
+#+begin_src emacs-lisp
+  <en>
+#+end_src
+
+The value returned by the interpreter when the
+corresponding predicate is found to be true.

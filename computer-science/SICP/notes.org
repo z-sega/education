@@ -1,0 +1,65 @@
+#+title: Notes & Main Ideas
+#+author: Ayo Onipe
+
+* Evaluating Combinations
+To evaluate a combination, do the following:
+1. Evaluate the sub-expressions of the combination.
+2. Apply the procedure that is the value of the leftmost
+   sub-expression (the operator) to the arguments that
+   are the values of the other sub-expressions (the
+   operands).
+
+Repeated application of the first step brings us to the
+point where we need to eval, not combinations, but
+primitive expressions (numbers, built-in operators,
+and other names).
+We take care of the primitive cases by stipulating that:
+- the values of numerals are the numbers that they name,
+- the values of built-in operators are the machine
+  instruction sequences that carry out the corresponding
+  operations, and
+- the values of other names are the objects associated
+  with those names in the environment.
+
+* Compound Procedures: Application process
+To apply a compound procedure to arguments, evaluate the
+body of the procedure with each formal parameter replaced
+by the corresponding argument.
+
+* Characteristics of any powerful programming language
+- Numbers and arithmetic operations are primitive data
+  and procedures.
+- Nesting of combinations provides a means of combining
+  operations.
+- Definitions that associate names with values provide a
+  limited means of abstraction.
+
+* Models for Procedure Application
+1. Substitution model
+
+* Methods of Interpreter Evaluation
+- normal-order evaluation:
+  'fully expand and then reduce'
+- applicative-order evaluation:
+  'evaluate the arguments and then apply'
+
+** Difference between applicative-order and normal-order evaluation
+https://cs.stackexchange.com/questions/40758/difference-between-normal-order-and-applicative-order-evaluation
+https://sookocheff.com/post/fp/evaluating-lambda-expressions/
+
+* Special Forms
+- and, or
+  (Not procedures,) B'cos the sub-expressions are not
+  necessarily all evaluated. *not* is an ordinary
+  procedure.
+
+* Mathematical functions vs. Computational procedures
+The contrast between function and procedure is a reflection
+of the general distinction between describing properties
+of things and describing how to do things, or, as it is
+sometimes referred to, the distinction between declarative
+knowledge and imperative knowledge.
+
+In mathematics we are usually concerned with declarative
+(what is) descriptions, whereas in computer science we are
+usually concerned with imperative (how to) descriptions.
