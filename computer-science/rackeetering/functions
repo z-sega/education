@@ -1,0 +1,86 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname functions) (read-case-sensitive #t) (teachpacks ((lib "image.rkt" "teachpack" "2htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "image.rkt" "teachpack" "2htdp")) #f)))
+; --- 11
+(define (distance-from-origin x y)
+  (sqrt (+ (expt x 2) (expt y 2))))
+
+; --- 12
+(define (cvolume length)
+  (expt length 3))
+
+(define (csurface length)
+  (* 6 (expt length 2)))
+
+; --- 13
+(define (string-first value)
+  (if (and (string? value) (> (string-length value) 0))
+      (substring value 0 1)
+      ""))
+
+
+; --- 14
+(define (string-last value)
+  (if (and (string? value) (> (string-length value) 0))
+      (substring value (- (string-length value) 1))
+      ""))
+
+
+; --- 15
+(define (==> sunny friday)
+  (if (or (not sunny) friday)
+      #true
+      #false))
+
+
+; --- 16
+(define (image-area img)
+  (if (image? img)
+      (* (image-width img) (image-height img))
+      0))
+
+
+; --- 17
+(define (image-classify img)
+  (if (image? img)
+      (if (tall? img)
+          "tall"
+          (if (square? img)
+              "square"
+              "wide"))
+      "not an image"))
+
+(define (tall? img)
+  ; #true if image-height > image-width
+  (> (image-height img) (image-width img)))
+
+(define (square? img)
+  ; #true if image-height = image-width
+  (= (image-height img) (image-width img)))
+
+
+; --- exercise 18:
+(define (string-join a b)
+  (if (and (string? a) (string? b))
+      (string-append a "_" b)
+      "inputs must be strings"))
+
+
+; --- exercise 19
+(define (string-insert str i)
+  (if (> i (string-length str))
+      "'i must be less than string length"
+      (string-append
+       (substring str 0 i)
+       "_"
+       (substring str i))))
+
+
+; --- exercise 20
+(define (string-delete str i)
+  (if (or (>= i (string-length str)) (< i 0))
+      "'i must be a number between 0 (inclusive) and the length of the string (exclusive)"
+      (string-append
+       (substring str 0 i)
+       (substring str (+ i 1)))))
+

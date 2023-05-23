@@ -1,0 +1,33 @@
+
+What happens when Alyssa attempts to use this to compute square roots?
+Explain.
+
+The new-if is defined like:
+
+(define (new-if predicate
+		then-clause
+		else-clause)
+	(cond (predicate then-clause)
+	      (else else-clause)))
+
+The problem stems from the nature of `new-if` as a compound
+procedure. It is not a _special form_ like the built-in `if`, which
+only evaluates the <predicate>, and then depending on the outcome
+decides whether to evaluate the <consequent> or the <alternative>.
+
+For reference, the built-in `if` is structured like:
+
+(if <predicate> <consequent> <alternative>)
+
+This is the procedure that is affected:
+
+(define (sqrt-iter guess x)
+	(if (good-enough? guess x)
+	    guess
+	    (sqrt-iter (improve guess x) x)))
+
+The built in `if` will evaluate (good-enough? guess x), then, if #t,
+`guess` is evaluate, and voila! However, the `new-if` evaluates
+(good-enough? guess x), guess, and (sqrt-iter (improve guess x)
+x))). In the case of `new-if`, these are each formal parameters in the
+`new-if` procedure definition.

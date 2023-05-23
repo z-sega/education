@@ -1,0 +1,21 @@
+#+title: Questions about Emacs Editor
+#+author: Ayo Onipe
+
+These are a set of questions about the emacs editor. These questions
+may not be on the same level of abstraction, by that what I'm trying
+to pass across is that they may not be about the same things. Some
+questions may be about internal emacs mechanisms, and some might be
+why certain things are done the way they are.
+
+** Calling an interactive function with a 'message' vs. evaluating a 'message'
+
+When you call an interactive function with a message, the function
+returns its value and as a side-effect, the message is printed in the
+echo area without double quotes.
+
+When you evaluate a 'message', the message is printed out the echo
+area with double quotes.
+
+Aparrently, this is because the function returns its value. The value
+of the message function is the string (the arg of the message
+function) - an atom contained in quotes?

@@ -1,0 +1,14 @@
+
+What happens when Alyssa attempts to use this to compute square roots?
+Explain.
+
+The new-if is defined like:
+
+(define (new-if predicate
+		then-clause
+		else-clause)
+	(cond (predicate then-clause)
+	      (else else-clause)))
+
+The problem stems from the nature of `new-if` as a compound
+procedure. It is not a _special form_
